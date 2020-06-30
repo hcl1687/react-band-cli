@@ -1,0 +1,31 @@
+{
+  "name": "react-band-cli",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "react-band-cli": "src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hcl1687/react-band-cli.git"
+  },
+  "keywords": [
+    "react-band",
+    "cli"
+  ],
+  "author": "hcl1687",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hcl1687/react-band-cli/issues"
+  },
+  "homepage": "https://github.com/hcl1687/react-band-cli#readme",
+  "dependencies": {
+    "commander": "^5.1.0",
+    "download-git-repo": "^3.0.2",
+    "mkdirp": "^1.0.4"
+  }
+}
