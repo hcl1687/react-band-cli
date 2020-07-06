@@ -13,6 +13,7 @@ program
   .usage('[options] <file ...>')
   .option('-i --init <name>', 'init project')
   .option('-d --demo <name>', 'with demo')
+  .option('-o --overwrite', 'overwrite exist directory')
   .parse(process.argv);
 
 if (program.init) {
@@ -24,25 +25,28 @@ if (program.init) {
 function initProject(projectName, demoName) {
   const projectPath = path.resolve(currentDir, projectName)
   console.log(projectPath)
-  if (fs.existsSync(projectPath)) {
+  if (fs.existsSync(projectPath) && !program.overwrite) {
     console.warn(projectName + ' already exists, please use another name.')
-  } else {
-    fs.mkdirSync(projectPath)
-    download(rbRepo, projectPath, (err) => {
-      if (err) {
-        console.warn(err)
-        return
-      }
-
-      const demoPath = path.resolve(projectPath, 'demo/' + demoName)
-      console.log(demoPath)
-      if (!fs.existsSync(demoPath)) {
-        console.warn(demoName + ' not exists.')
-        return
-      }
-      copyDemo(projectPath, demoPath)
-    })
+    return
   }
+
+  if (!fs.existsSync(projectPath)) {
+    fs.mkdirSync(projectPath)
+  }
+  download(rbRepo, projectPath, (err) => {
+    if (err) {
+      console.warn(err)
+      return
+    }
+
+    const demoPath = path.resolve(projectPath, 'demo/' + demoName)
+    console.log(demoPath)
+    if (!fs.existsSync(demoPath)) {
+      console.warn(demoName + ' not exists.')
+      return
+    }
+    copyDemo(projectPath, demoPath)
+  })
 }
 
 function copyDemo(dest, source) {
