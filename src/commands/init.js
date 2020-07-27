@@ -17,19 +17,29 @@ function initProject(projectName, demoName, overwrite) {
   if (!fs.existsSync(projectPath)) {
     fs.mkdirSync(projectPath)
   }
+
+  var steps = demoName ? 3 : 2
+  var step = 1
+
+  console.log(`${step++}/${steps} download react-band ...`)
   download(rbRepo, projectPath, (err) => {
     if (err) {
       console.warn(err)
       return
     }
 
-    const demoPath = path.resolve(projectPath, 'demo/' + demoName)
-    console.log(demoPath)
-    if (!fs.existsSync(demoPath)) {
-      console.warn(demoName + ' not exists.')
-      return
+    if (demoName) {
+      console.log(`${step++}/${steps} copy demo ...`)
+      const demoPath = path.resolve(projectPath, 'demo/' + demoName)
+      console.log(demoPath)
+      if (!fs.existsSync(demoPath)) {
+        console.warn(demoName + ' not exists.')
+        return
+      }
+      copyDemo(projectPath, demoPath)
     }
-    copyDemo(projectPath, demoPath)
+
+    console.log(`${step++}/${steps} Done.`)
   })
 }
 
