@@ -18,7 +18,7 @@ function initProject(projectName, demoName, overwrite) {
     fs.mkdirSync(projectPath)
   }
 
-  var steps = demoName ? 3 : 2
+  var steps = demoName ? 2 : 1
   var step = 1
 
   console.log(`${step++}/${steps} download react-band ...`)
@@ -39,7 +39,7 @@ function initProject(projectName, demoName, overwrite) {
       copyDemo(projectPath, demoPath)
     }
 
-    console.log(`${step++}/${steps} Done.`)
+    console.log(`Done.`)
   })
 }
 
