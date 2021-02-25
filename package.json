@@ -1,6 +1,6 @@
 {
   "name": "react-band-cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "The react-band command line interface.",
   "main": "index.js",
   "scripts": {

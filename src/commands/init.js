@@ -6,7 +6,7 @@ const rbRepo = 'hcl1687/react-band'
 const currentDir = process.cwd()
 
 // create project
-function initProject(projectName, demoName, overwrite) {
+function initProject(projectName, { demoName, overwrite, tempalte }) {
   const projectPath = path.resolve(currentDir, projectName)
   console.log(projectPath)
   if (fs.existsSync(projectPath) && !overwrite) {
@@ -22,7 +22,8 @@ function initProject(projectName, demoName, overwrite) {
   var step = 1
 
   console.log(`${step++}/${steps} download react-band ...`)
-  download(rbRepo, projectPath, (err) => {
+  const branch = tempalte === 'typescript' ? '/tree/release/typescript' : ''
+  download(rbRepo + branch, projectPath, (err) => {
     if (err) {
       console.warn(err)
       return
@@ -53,7 +54,7 @@ function copyDemo(dest, source) {
 }
 
 function init(name, cmdObj) {
-  initProject(name, cmdObj.demo, cmdObj.overwrite)
+  initProject(name, cmdObj)
 }
 
 module.exports = init;

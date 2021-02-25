@@ -8,6 +8,7 @@ program
   .command('init <name>')
   .option('-d --demo <name>', 'with demo')
   .option('-o --overwrite', 'overwrite exist directory')
+  .option('-t --template', 'use plain javascript or typescript.')
   .description('initialize your project with react-band')
   .action(init);
 
