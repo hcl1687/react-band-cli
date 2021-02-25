@@ -20,5 +20,6 @@ react-band-cli init test
 
 | option | description | example |
 | -              | -                                          | -                 |
+| -t --template | init project with plain javascript or typescript. options: plain, typescript | react-band-cli init test -t typescript -d as |
 | -d --demo name | init project with the specific demo. Current provide these demos: default,basic,basic_menu,basic_menu_antd,redux_menu_antd,as | react-band-cli init test -d as |
 | -o --overwrite | init project, if the project folder has exsited, overwrite it. | react-band-cli init test -d as -o |
